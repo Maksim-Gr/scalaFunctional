@@ -9,10 +9,12 @@ object Main {
     case Empty()
     case Pair(head: A, tail: MyList[A])
 
-
+    //map is both a structural recursion and a structural corecursion.
     def map[B](f: A => B): MyList[B] =
-      if ??? then Empty()
-      else Pair(???, ???)
+      this match {
+        case Empty() => Empty()
+        case Pair(head, tail) => Pair(f(head), tail.map(f))
+      }
   }
 }
 
